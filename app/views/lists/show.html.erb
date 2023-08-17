@@ -1,0 +1,11 @@
+<h1>here are the details of the clicked list</h1>
+
+<%= @list.name %>
+<% @list.movies.each do |movie| %>
+  <%= movie.title %>
+  <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+  <%= link_to "delete a bookmark", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<% end %>
+
+
+<p><%= link_to "add a bookmark", new_list_bookmark_path(@list) %></p>
